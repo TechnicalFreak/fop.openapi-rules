@@ -3,18 +3,17 @@ name: OpenApi Checks
 on:
   workflow_call:
     inputs:
-      rule-version:
-        type: string
-        required: true
       openapi-file-path:
         type: string
         required: true
+    
      
 
 env:
-  SPECTRAL_OWASP_RULESET_LOCATION: https://raw.githubusercontent.com/TechnicalFreak/fop.openapi-rules/${{github.event.inputs.rule_version}}/spectral-security.yml
-  SPECTRAL_OAS_RULESET_LOCATION: https://raw.githubusercontent.com/TechnicalFreak/fop.openapi-rules/${{github.event.inputs.rule_version}}/spectral-oas.yml
-  SPECTRAL_STYLEGUIDE_RULESET_LOCATION: https://raw.githubusercontent.com/TechnicalFreak/fop.openapi-rules/${{github.event.inputs.rule_version}}/spectral-styleguide.yml
+  RULE_VERSION: 7
+  SPECTRAL_OWASP_RULESET_LOCATION: https://raw.githubusercontent.com/TechnicalFreak/fop.openapi-rules/$RULE_VERSION/spectral-security.yml
+  SPECTRAL_OAS_RULESET_LOCATION: https://raw.githubusercontent.com/TechnicalFreak/fop.openapi-rules/$RULE_VERSION/spectral-oas.yml
+  SPECTRAL_STYLEGUIDE_RULESET_LOCATION: https://raw.githubusercontent.com/TechnicalFreak/fop.openapi-rules/$RULE_VERSION/spectral-styleguide.yml
   
 jobs:
   OWASP-CHECK:    
