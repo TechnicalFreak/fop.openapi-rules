@@ -1,6 +1,6 @@
 # Demo-Github-Action
 
-´´´yaml
+```yaml
 name: OpenApi Checks
 
 on:
@@ -13,4 +13,4 @@ jobs:
     uses: TechnicalFreak/fop.openapi-rules/.github/workflows/check-openapi.yaml@1
     with:
       openapi-file-path: my-api.yaml
-´´´
+```
