@@ -8,7 +8,7 @@ on:
         required: true    
 
 env:
-  RULE-VERSION: 14
+  RULE-VERSION: 15
 
 jobs:
   OWASP-CHECK:    
@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-node@v3
       - run: npm install -g @stoplight/spectral-cli
       - run: npm install --save -D @stoplight/spectral-owasp-ruleset
-      - run: wget https://raw.githubusercontent.com/TechnicalFreak/fop.openapi-rules/$RULE-VERSION/spectral-security.yml -O .spectral.yml
+      - run: wget https://raw.githubusercontent.com/TechnicalFreak/fop.openapi-rules/${{env.RULE-VERSION}}/spectral-security.yml -O .spectral.yml
       - run: spectral lint ${{inputs.openapi-file-path}}
 
   OAS-CHECK:    
@@ -27,7 +27,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
       - run: npm install -g @stoplight/spectral-cli
-      - run: wget https://raw.githubusercontent.com/TechnicalFreak/fop.openapi-rules/$RULE-VERSION/spectral-oas.yml -O .spectral.yml
+      - run: wget https://raw.githubusercontent.com/TechnicalFreak/fop.openapi-rules/${{env.RULE-VERSION}}/spectral-oas.yml -O .spectral.yml
       - run: spectral lint ${{inputs.openapi-file-path}}
 
   STYLEGUIDE-CHECK:    
@@ -36,5 +36,5 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
       - run: npm install -g @stoplight/spectral-cli
-      - run: wget https://raw.githubusercontent.com/TechnicalFreak/fop.openapi-rules/$RULE-VERSION/spectral-styleguide.yml -O .spectral.yml
+      - run: wget https://raw.githubusercontent.com/TechnicalFreak/fop.openapi-rules/${{env.RULE-VERSION}}/spectral-styleguide.yml -O .spectral.yml
       - run: spectral lint ${{inputs.openapi-file-path}}
