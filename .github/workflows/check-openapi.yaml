@@ -14,7 +14,7 @@ jobs:
   OWASP-CHECK:    
     runs-on: ubuntu-latest
     env:
-       SPECTRAL_OWASP_RULESET_LOCATION: https://raw.githubusercontent.com/TechnicalFreak/fop.openapi-rules/$RULE_VERSION/spectral-security.yml
+       SPECTRAL_OWASP_RULESET_LOCATION: https://raw.githubusercontent.com/TechnicalFreak/fop.openapi-rules/${{env.RULE_VERSION}}/spectral-security.yml
     steps:      
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -26,23 +26,21 @@ jobs:
   OAS-CHECK:    
     runs-on: ubuntu-latest
     env:
-      SPECTRAL_OAS_RULESET_LOCATION: https://raw.githubusercontent.com/TechnicalFreak/fop.openapi-rules/$RULE_VERSION/spectral-oas.yml
+      SPECTRAL_OAS_RULESET_LOCATION: https://raw.githubusercontent.com/TechnicalFreak/fop.openapi-rules/${{env.RULE_VERSION}}/spectral-oas.yml
     steps:      
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
       - run: npm install -g @stoplight/spectral-cli
-      - run: npm install --save -D @stoplight/spectral-owasp-ruleset
       - run: wget $SPECTRAL_OAS_RULESET_LOCATION -O .spectral.yml
       - run: spectral lint ${{github.event.inputs.openapi-file-path}}
 
   STYLEGUIDE-CHECK:    
     runs-on: ubuntu-latest
     env:
-      SPECTRAL_STYLEGUIDE_RULESET_LOCATION: https://raw.githubusercontent.com/TechnicalFreak/fop.openapi-rules/$RULE_VERSION/spectral-styleguide.yml
+      SPECTRAL_STYLEGUIDE_RULESET_LOCATION: https://raw.githubusercontent.com/TechnicalFreak/fop.openapi-rules/${{env.RULE_VERSION}}/spectral-styleguide.yml
     steps:      
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
       - run: npm install -g @stoplight/spectral-cli
-      - run: npm install --save -D @stoplight/spectral-owasp-ruleset
       - run: wget $SPECTRAL_STYLEGUIDE_RULESET_LOCATION -O .spectral.yml
       - run: spectral lint ${{github.event.inputs.openapi-file-path}}
