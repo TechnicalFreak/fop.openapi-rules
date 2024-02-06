@@ -1,5 +1,2 @@
 extends:
     - "@stoplight/spectral-owasp-ruleset"
-
-rules:
-  
