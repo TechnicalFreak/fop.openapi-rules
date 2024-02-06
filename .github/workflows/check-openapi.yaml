@@ -8,7 +8,7 @@ on:
         required: true    
 
 env:
-  RULE-VERSION: 17
+  RULE-VERSION: 1
 
 jobs:
   OWASP-CHECK:    
