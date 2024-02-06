@@ -1,0 +1,16 @@
+rules:
+  "no-trailing-slash":
+    description: "Paths should not end with '/'"
+    severity: error
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: ".+\/$"
+  "path-characters":
+    description: "Paths may only contain lowercase letters ('a'-'z'), numbers, forward slashes ('/') and curly braces ('{', '}')"
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z0-9\/\\{\\}]+$"
