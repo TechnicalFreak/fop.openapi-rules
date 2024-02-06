@@ -5,19 +5,16 @@ on:
     inputs:
       openapi-file-path:
         type: string
-        required: true
-    
-     
+        required: true    
 
 env:
-  RULE_VERSION: 8
-  SPECTRAL_OWASP_RULESET_LOCATION: https://raw.githubusercontent.com/TechnicalFreak/fop.openapi-rules/${RULE_VERSION}/spectral-security.yml
-  SPECTRAL_OAS_RULESET_LOCATION: https://raw.githubusercontent.com/TechnicalFreak/fop.openapi-rules/${RULE_VERSION}/spectral-oas.yml
-  SPECTRAL_STYLEGUIDE_RULESET_LOCATION: https://raw.githubusercontent.com/TechnicalFreak/fop.openapi-rules/${RULE_VERSION}/spectral-styleguide.yml
+  RULE_VERSION: 9
   
 jobs:
   OWASP-CHECK:    
     runs-on: ubuntu-latest
+    env:
+       SPECTRAL_OWASP_RULESET_LOCATION: https://raw.githubusercontent.com/TechnicalFreak/fop.openapi-rules/$RULE_VERSION/spectral-security.yml
     steps:      
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -28,6 +25,8 @@ jobs:
 
   OAS-CHECK:    
     runs-on: ubuntu-latest
+    env:
+      SPECTRAL_OAS_RULESET_LOCATION: https://raw.githubusercontent.com/TechnicalFreak/fop.openapi-rules/$RULE_VERSION/spectral-oas.yml
     steps:      
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -38,6 +37,8 @@ jobs:
 
   STYLEGUIDE-CHECK:    
     runs-on: ubuntu-latest
+    env:
+      SPECTRAL_STYLEGUIDE_RULESET_LOCATION: https://raw.githubusercontent.com/TechnicalFreak/fop.openapi-rules/$RULE_VERSION/spectral-styleguide.yml
     steps:      
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
