@@ -1,16 +1,14 @@
 name: OpenApi Checks
 
 on:
-  workflow_call
-
-inputs:
-  rule-version:
-    required: true
-    type: choice
-    options:
-      - 2
-  openapi-file-path:
-    required: true
+  workflow_call:
+    inputs:
+      rule-version:
+        type: string
+        required: true
+      openapi-file-path:
+        type: string
+        required: true
      
 
 env:
